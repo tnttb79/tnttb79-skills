@@ -1,6 +1,7 @@
 ---
 name: t-init
 description: Initialize or update concise shared project context for coding agents. Use when starting, formalizing, or revisiting a new or early-stage project. Inspect the repository, gather important missing decisions from the user, create the canonical AGENTS.md, and add only minimal compatibility files for detected coding-agent harnesses.
+disable-model-invocation: true
 ---
 
 # T Init
@@ -88,7 +89,16 @@ Detect harnesses from the invocation, active environment, and existing project c
 
 When multiple Claude instruction entry files already exist, avoid adding another competing copy. Consolidate safely into root `CLAUDE.md`; if removal would risk losing unclear manual instructions, preserve them and report the conflict.
 
-## 6. Review and report
+## 6. Set version control hygiene
+
+Keep installed and machine-local agent artifacts out of the repository without ignoring the shared context this skill maintains.
+
+- Detect version control. If the project is not yet tracked and the context indicates it should be, initialize git. Do not initialize when evidence shows the project is intentionally untracked.
+- Create or update root `.gitignore` to exclude installed or generated agent artifacts and local per-user state: skills and plugins installed into the project (for example a copied skills directory), MCP or harness caches, and local agent settings files. Add entries only for artifacts that actually exist or are expected from the detected harnesses; do not speculatively list every possible harness.
+- Keep canonical, hand-authored shared context tracked. Root `AGENTS.md` and a thin `CLAUDE.md` import are meant to be committed so the team shares them. Do not ignore them unless the user explicitly asks.
+- Preserve existing `.gitignore` content and ordering. Make the smallest coherent edit, avoid duplicate patterns, and do not reformat unrelated entries.
+
+## 7. Review and report
 
 Before finishing:
 

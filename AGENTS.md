@@ -34,6 +34,7 @@ Treat `description` as routing information: state what the skill does, when it a
 ## Skill Design
 
 - Give each skill one clear, reusable responsibility.
+- Leave skills model-invocable by default. Make a skill manual-only only when the user explicitly requests it (for example, workflows with side effects or sensitive timing).
 - State required inputs, workflow, constraints, and expected output explicitly.
 - Keep interpretation and decisions in `SKILL.md`; use scripts for deterministic work and references for supporting detail.
 - Make repeated runs safe and evidence-based. Do not hard-code project names, personal paths, organization configuration, or unnecessary stack assumptions.
@@ -61,6 +62,7 @@ Preserve valid manual instructions when editing an existing skill. Do not commit
 - Do not make a harness-specific path, frontmatter field, or behavior the default for all users.
 - Verify current official behavior and supported agent identifiers before changing compatibility or installation instructions.
 - Root `AGENTS.md` is the canonical repository context. `CLAUDE.md` only imports it; do not duplicate shared context in harness files.
+- To make a skill manual-only, set `disable-model-invocation: true` in `SKILL.md` frontmatter (honored by Claude Code, Cursor, Copilot, Factory, and pi) and add a Codex sidecar `skills/<name>/agents/openai.yaml` with `policy.allow_implicit_invocation: false`. Harnesses that support neither ignore both safely.
 
 ## Local Validation
 
