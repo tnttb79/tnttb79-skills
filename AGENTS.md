@@ -101,7 +101,9 @@ Before completion, confirm discovery succeeds, test the relevant installation mo
 
 Whenever a skill is created, renamed, or removed, update the `Available Skills` table in `README.md`.
 
-For normal skill work, change only the relevant table row. Keep its description to one short sentence; do not reformat unrelated sections, change installation instructions unless incorrect, or add long per-skill usage documentation to the root README. Keep detailed usage in the skill's directory when needed.
+Each row must include the skill name, a one-sentence description, and its exact GitHub installation command in the form `npx skills add OWNER/REPOSITORY --skill <skill-name>`.
+
+For normal skill work, change only the relevant table row. Do not reformat unrelated sections, change general installation instructions unless incorrect, or add long per-skill usage documentation to the root README. Keep detailed usage in the skill's directory when needed.
 
 ## Safety and Scope
 

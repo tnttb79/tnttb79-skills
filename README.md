@@ -43,6 +43,6 @@ npx skills update
 
 ## Available Skills
 
-| Skill | Description |
-|---|---|
-| `t-init` | Initializes or updates concise shared project context through a canonical root `AGENTS.md`. |
+| Skill | Description | Install |
+|---|---|---|
+| `t-init` | Initializes or updates concise shared project context through a canonical root `AGENTS.md`. | `npx skills add tnttb79/tnttb79-skills --skill t-init` |
