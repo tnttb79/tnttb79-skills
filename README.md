@@ -2,6 +2,8 @@
 
 A personal library and development workspace for generic, reusable [Agent Skills](https://agentskills.io/). Skills are created and maintained here, installed into other projects with the [`skills.sh` CLI](https://skills.sh/), and designed to work across supported coding-agent harnesses when practical.
 
+Browse these skills on skills.sh: [tnttb79/tnttb79-skills](https://www.skills.sh/tnttb79/tnttb79-skills)
+
 ## Installation
 
 List available skills from a GitHub repository:
