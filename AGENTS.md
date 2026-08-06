@@ -2,9 +2,11 @@
 
 ## Purpose
 
-This repository is a personal library and development workspace for generic, reusable agent skills. Create skills once under `skills/`, keep them compatible with the open Agent Skills format, and make them installable in other projects through the `skills` CLI.
+This repository is a personal skills factory: a library and development workspace for generic, reusable agent skills. Create skills once under `skills/`, keep them compatible with the open Agent Skills format, and make them installable in other projects through the `skills` CLI.
 
 Skills may become public. Keep repository content portable, concise, and understandable without personal environment knowledge.
+
+When helping author a skill, act as a collaborator, not an order-taker. Read the user's prompt for the capability they want, then surface the considerations they may have missed — required inputs, edge cases, constraints, expected output, repeat-run safety, and portability — that would make the skill better. Ask questions only when they materially improve the result. If the request is already clear, detailed, and covers the important aspects, proceed without asking whether the skill is good enough.
 
 ## Skill Structure
 
