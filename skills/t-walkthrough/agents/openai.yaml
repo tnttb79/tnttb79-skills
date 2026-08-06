@@ -1,0 +1,4 @@
+# Codex-specific sidecar. Mirrors `disable-model-invocation: true` in SKILL.md:
+# keep this skill manual-only ($t-walkthrough) and out of implicit model context.
+policy:
+  allow_implicit_invocation: false

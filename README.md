@@ -48,3 +48,4 @@ npx skills update
 | Skill | Description | Install |
 |---|---|---|
 | `t-init` | Initializes or updates concise shared project context through a canonical root `AGENTS.md`. | `npx skills add tnttb79/tnttb79-skills --skill t-init` |
+| `t-walkthrough` | Generates a full set of concise, evidence-based lecture docs (a `lectures/` directory) that teach an unfamiliar codebase from its current source. | `npx skills add tnttb79/tnttb79-skills --skill t-walkthrough` |
