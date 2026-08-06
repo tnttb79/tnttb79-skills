@@ -9,21 +9,21 @@ Browse these skills on skills.sh: [tnttb79/tnttb79-skills](https://www.skills.sh
 List available skills from a GitHub repository:
 
 ```bash
-npx skills add OWNER/REPOSITORY --list
+npx skills add tnttb79/tnttb79-skills --list
 ```
 
 Install one skill into the current project:
 
 ```bash
-npx skills add OWNER/REPOSITORY \
-  --skill your-skill
+npx skills add tnttb79/tnttb79-skills \
+  --skill selected-skill
 ```
 
 Install for selected harnesses:
 
 ```bash
-npx skills add OWNER/REPOSITORY \
-  --skill your-skill \
+npx skills add tnttb79/tnttb79-skills \
+  --skill selected-skill \
   --agent claude-code \
   --agent codex \
   --agent cursor
@@ -32,8 +32,8 @@ npx skills add OWNER/REPOSITORY \
 Install globally:
 
 ```bash
-npx skills add OWNER/REPOSITORY \
-  --skill your-skill \
+npx skills add tnttb79/tnttb79-skills \
+  --skill selected-skill \
   --global
 ```
 
