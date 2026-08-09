@@ -1,6 +1,6 @@
 # tnttb79-skills
 
-A personal skills factory: a library and development workspace where generic, reusable [Agent Skills](https://agentskills.io/) are authored once against the open standard, then installed into other projects with the [`skills.sh` CLI](https://skills.sh/). The emphasis is disciplined, portable authoring — no leaked harness assumptions — so a single install works across supported coding-agent harnesses regardless of which one you use.
+A personal skills factory: a library and development workspace where generic, reusable Agent Skills are authored once against the open standard, then installed into other projects with skills.sh. The emphasis is disciplined, portable authoring — no leaked harness assumptions — so a single install works across supported coding-agent harnesses regardless of which one you use.
 
 Browse these skills on skills.sh: [tnttb79/tnttb79-skills](https://www.skills.sh/tnttb79/tnttb79-skills)
 
