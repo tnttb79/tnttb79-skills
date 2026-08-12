@@ -1,6 +1,6 @@
 ---
 name: t-walkthrough
-description: Generate a complete set of concise, evidence-based lecture-style walkthrough docs (a lectures/ directory) that teach an unfamiliar codebase by analyzing its current source and structure — not git or commit history. Breaks the project into topics (by architecture layer, feature, or a hybrid, whichever fits) and writes the full lecture set in one pass, starting with a concise 00 project-overview lecture. Asks once about the reader's background to calibrate depth, skipping that question if the context was already given. Use when the user wants to learn or onboard onto a codebase, asks for a walkthrough, tour, or architecture explainer, wants onboarding docs generated, or says things like "walk me through this codebase," "explain the architecture," or "help me understand this project."
+description: Generate a complete set of concise, evidence-based lecture-style walkthrough docs (a lectures/ directory) that teach an unfamiliar codebase by analyzing its current source and structure. Breaks the project into topics (by architecture layer, feature, or a hybrid, whichever fits) and writes the full lecture set in one pass, starting with a concise 00 project-overview lecture. Asks once about the reader's background to calibrate depth, skipping that question if the context was already given. Use when the user wants to learn or onboard onto a codebase, asks for a walkthrough, tour, or architecture explainer, wants onboarding docs generated, or says things like "walk me through this codebase," "explain the architecture," or "help me understand this project."
 disable-model-invocation: true
 ---
 
@@ -10,8 +10,7 @@ disable-model-invocation: true
 
 Help the user build a strong mental model of an unfamiliar codebase by generating a
 complete, evidence-based set of lecture-style Markdown files in a `lectures/` directory.
-There is no commit history to lean on — derive the topic breakdown by analyzing the
-current state of the code itself.
+Derive the topic breakdown by analyzing the current state of the code itself.
 
 Every lecture must teach both **how** the implementation works and **why** it was designed
 that way. Do not merely summarize files or restate code. Read
