@@ -64,7 +64,7 @@ Preserve valid manual instructions when editing an existing skill. Do not commit
 - Do not make a harness-specific path, frontmatter field, or behavior the default for all users.
 - Verify current official behavior and supported agent identifiers before changing compatibility or installation instructions.
 - Root `AGENTS.md` is the canonical repository context. `CLAUDE.md` only imports it; do not duplicate shared context in harness files.
-- To make a skill manual-only, set `disable-model-invocation: true` in `SKILL.md` frontmatter (honored by Claude Code, Cursor, Copilot, Factory, and pi) and add a Codex sidecar `skills/<name>/agents/openai.yaml` with `policy.allow_implicit_invocation: false`. Harnesses that support neither ignore both safely.
+- Manual-only flags have known costs (checked 2026-10). `disable-model-invocation: true` makes a skill unreachable in Copilot CLI 1.0.79 (github/copilot-cli#4438), and the Codex sidecar `agents/openai.yaml` with `policy.allow_implicit_invocation: false` also blocks explicit `$skill` use outside the TUI (openai/codex#40600). Prefer a description that says when the skill runs. Add the flags only when the user asks and accepts these limits.
 
 ## Local Validation
 
@@ -98,6 +98,14 @@ npx skills add OWNER/REPOSITORY --skill your-skill --agent claude-code --agent c
 npx skills add OWNER/REPOSITORY --skill your-skill --global --agent claude-code --agent codex --agent cursor
 npx skills update
 ```
+
+Check frontmatter, names, sizes, links and README rows:
+
+```bash
+bash scripts/check.sh
+```
+
+Scenario evals for the workflow skills live in `evals/`; see `evals/README.md`. Neither `scripts/` nor `evals/` is installed with a skill.
 
 Before completion, confirm discovery succeeds, test the relevant installation mode, inspect installed files when compatibility matters, and review `git diff`.
 

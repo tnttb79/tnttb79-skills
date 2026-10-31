@@ -64,9 +64,9 @@ Write this first. Keep it a quick orientation, not a deep dive:
 Write the complete `lectures/` directory — `00` plus every planned topic — in this run.
 Follow [references/authoring-guide.md](references/authoring-guide.md) for the per-lecture
 anatomy and evidence rules. In short: base every claim on the actual current source, trace
-symbols across file and package boundaries, cite repo-relative paths (and symbol or line
-where useful), quote only the relevant snippet, and verify paths and names against the repo
-before finishing. Favor short, clear explanations — this is a map, not an exhaustive
+symbols across file and package boundaries, show a short snippet of the code being
+explained with its repo-relative path and symbol or line range, and verify paths, names and
+snippets against the repo before finishing. Favor short, clear explanations — this is a map, not an exhaustive
 reference.
 
 Filename format: `NN-descriptive-topic-name.md`.
@@ -82,7 +82,8 @@ files are the deliverable.
 When the user later asks about a topic:
 
 - If a lecture already covers it, answer directly using that lecture plus the current source
-  as context. Don't regenerate or duplicate it.
+  as context, and show the relevant snippet with its path and line range as the lectures
+  do. Don't regenerate or duplicate it.
 - If it's genuinely uncovered (new code since generation, or a topic missed originally),
   create one new lecture in the same conventions and add it to the `00` overview's map.
 

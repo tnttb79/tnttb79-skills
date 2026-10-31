@@ -23,10 +23,11 @@ able to read the intro and section headers alone and know what the topic contain
   trace referenced functions, types, components, routes, schemas, and imports across file
   and package boundaries. Don't explain a file in isolation when its behavior depends on
   another file.
-- Cite the repo-relative path next to each discussed piece of code, plus the symbol name or
-  line number where it helps the reader jump there.
+- Show the code you explain. When a point rests on specific code, include a short snippet
+  labelled with its repo-relative path and symbol or line range, for example
+  `src/auth/session.ts:42-58` (`createSession`), so the reader can jump there.
 - Quote only the relevant portion of a file, not the whole thing. Prefer a few lines that
-  make the point over a long block.
+  make the point over a long block, and mark cut lines with `...`.
 - Verify every path, symbol name, and quoted snippet against the repository before
   finishing. Do not rely on conventions assumed from similar projects — this codebase may
   differ.

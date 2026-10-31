@@ -1,56 +1,44 @@
-# Concise context guide
+# Context guide
 
-Root `AGENTS.md` is the canonical project map and operating guide for coding agents. It is not a full specification, architecture document, project history, or replacement for the README.
+## What goes where
 
-## Selection test
+| File | Reader | Holds |
+|---|---|---|
+| 0-START-HERE.md | human | commands, the human's job, where things are |
+| human-context/ | human | what the app is and how it fits together, in plain words |
+| AGENTS.md | every agent, every session | commands, stack, workflow, rules, writing rules, index |
+| agent-context/ | agents, on demand | technical detail: parts, decisions, conventions, gotchas |
+| specs/ | both | one folder per feature: spec.md and tasks.md |
 
-Include an item only when future agents will repeatedly need it to work correctly and are unlikely to infer it safely at the moment of use. Prefer:
+Each fact lives in one file. Other files point to it.
 
-- purpose, current phase, initial scope, and important non-goals
-- confirmed decisions and current priorities
-- boundaries, approval requirements, and protected areas
-- verified commands or validation expectations
-- links to authoritative detailed documents
-- consequential open decisions
+## What agents need
 
-Omit generic development advice, tutorials, exhaustive directory trees, manifest summaries, detailed specifications, speculative plans, stale history, and facts obvious from a quick repository inspection.
+Write what an agent cannot learn from a quick look at the code: reasons for decisions, rules that span files, invariants, flows across parts, conventions that differ from the stack's defaults, and gotchas. Leave out file listings, dependency lists, generic advice and anything the code states plainly. A study of AGENTS.md files found that overviews did not help agents finish tasks and that context files raised cost by over 20%, while non-standard project rules helped (arXiv 2602.11988).
 
-## Flexible outline
+## Sizes
 
-Choose only useful sections. Possible headings include:
+- AGENTS.md: under 150 lines.
+- index.md: under 20 lines, one line per file: path, what it covers, when to read it.
+- Numbered files: under 200 lines. Split by topic when one grows past that.
+- human-context files: about a page each.
 
-- Purpose or Goal
-- Users and Core Use Cases
-- Current State
-- Initial Scope and Non-Goals
-- Confirmed Decisions or Technical Direction
-- Development Workflow
-- Quality and Verification
-- Constraints
-- Agent Responsibilities and Approval Boundaries
-- Current Priority
-- Open Decisions
-- Important References
+## Numbering and loading
 
-A small project may need only a title and a few short sections. Omit sections with no meaningful content; never fill them with `TBD`, `None`, `Unknown`, or generic placeholders. As a general target, stay below about 150 lines unless recurring project complexity genuinely requires more.
+- Files are named 001-name.md in creation order. Never renumber and never reuse a number. The index gives the reading order.
+- Loading takes at most two hops: AGENTS.md, then an index.md, then one file.
+- Index entries are plain paths. Do not use @ imports for them: imports load eagerly and cost as much as pasting the file.
 
-## Preserve distinctions
+## Nested AGENTS.md
 
-- **Current state:** What repository evidence shows exists now.
-- **Confirmed direction:** Decisions explicitly made by the user or authoritative project documents.
-- **Planned work:** Intended work not yet implemented; include only when it affects current decisions.
-- **Open decisions:** Consequential unresolved choices raised by the user, an approval boundary, conflicting evidence, or the current milestone. Omit harmless uncertainty and routine choices that have not arisen.
+Add one only where an area has its own commands or rules, such as a package in a monorepo. Put a one-line CLAUDE.md (@AGENTS.md) beside it and list it in the root Index. Claude Code reads AGENTS.md only when no CLAUDE.md sits at or above that folder, and Codex reads only the files from the repo root down to where it started.
 
-For an empty project, say plainly that it is in planning or initialization and list only confirmed direction. Do not invent commands, dependencies, folders, services, or architecture.
+## When to update
 
-## Keep details elsewhere
+- agent-context: when a task reveals a lasting fact or gotcha, at feature end (t-build).
+- human-context: only when a finished feature changes what the app does.
+- AGENTS.md: when commands, stack, rules or the index change.
 
-Link to the README for human onboarding, specifications for detailed requirements, architecture records for rationale, and runbooks for operations. Summarize only the part agents need every session.
+## Tidy checks
 
-Include a command only after verifying it in a manifest, task runner, configuration, CI workflow, or other reliable source. Never copy secrets or literal environment values; mention a variable name only when it changes how agents work.
-
-## Update without bloat
-
-On repeat runs, retain stable wording when it remains accurate. Add a new item only when it passes the selection test. Merge overlapping bullets, remove clearly stale facts, and avoid formatting-only rewrites. Preserve valid manual instructions and report unresolved conflicts.
-
-Shared context belongs only in `AGENTS.md`. Compatibility files should contain a supported import/reference plus genuinely harness-specific instructions, never a second summary.
+Dead index paths, files over size, facts the code no longer matches, specs marked done but not archived, and the same fact in two files.

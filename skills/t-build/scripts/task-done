@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -ne 2 ]; then
+  echo "usage: task-done <path/to/tasks.md> <task-id>" >&2
+  exit 2
+fi
+
+if [ ! -f "$1" ]; then
+  echo "task-done: no such file: $1" >&2
+  exit 2
+fi
+
+tasks="$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
+id="$2"
+
+case "$id" in
+  "" | *[!A-Za-z0-9-]*)
+    echo "task-done: bad task id: $id" >&2
+    exit 2
+    ;;
+esac
+
+line="$(grep -E "^- \[ \] ${id}[ :(]" "$tasks" | head -n 1 || true)"
+if [ -z "$line" ]; then
+  echo "task-done: no open task $id in $1" >&2
+  exit 2
+fi
+
+cmd="$(printf '%s\n' "$line" | sed -n 's/.*Done when: `\(.*\)`[[:space:]]*$/\1/p')"
+if [ -z "$cmd" ]; then
+  echo "task-done: task $id has no Done when command in backticks" >&2
+  exit 2
+fi
+
+root="$(git -C "$(dirname "$tasks")" rev-parse --show-toplevel 2>/dev/null || dirname "$tasks")"
+cd "$root"
+
+echo "task-done: $id: running $cmd"
+set +e
+bash -c "$cmd" < /dev/null
+code=$?
+set -e
+
+if [ "$code" -ne 0 ]; then
+  echo "task-done: $id not done, command exited $code" >&2
+  exit "$code"
+fi
+
+commit="$(git rev-parse --short HEAD 2>/dev/null || echo no-commit)"
+if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+  commit="$commit+dirty"
+fi
+
+tmp="$(mktemp)"
+awk -v id="$id" '
+  !ticked && $0 ~ ("^- \\[ \\] " id "[ :(]") { sub(/^- \[ \] /, "- [x] "); ticked = 1 }
+  { print }
+' "$tasks" > "$tmp"
+cat "$tmp" > "$tasks"
+rm -f "$tmp"
+
+if ! grep -q '^## Log' "$tasks"; then
+  printf '\n## Log\n' >> "$tasks"
+fi
+if [ -n "$(tail -c 1 "$tasks")" ]; then
+  printf '\n' >> "$tasks"
+fi
+printf -- '- %s %s %s pass: %s\n' "$(date +%Y-%m-%d)" "$id" "$commit" "$cmd" >> "$tasks"
+
+echo "task-done: ticked $id"
