@@ -31,7 +31,7 @@ check_skill() {
   [ "${#desc}" -le 1024 ] || fail "$name" "description is ${#desc} characters, over 1024"
   lines="$(wc -l < "$file" | tr -d ' ')"
   [ "$lines" -le 500 ] || fail "$name" "SKILL.md has $lines lines, over 500"
-  grep -q "\`$name\`" README.md || fail "$name" "missing from the README table"
+  grep -q "\`$name\`" README.md || fail "$name" "not named in README.md"
 }
 
 scan_markdown() {

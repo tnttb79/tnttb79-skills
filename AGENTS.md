@@ -99,7 +99,7 @@ npx skills add OWNER/REPOSITORY --skill your-skill --global --agent claude-code 
 npx skills update
 ```
 
-Check frontmatter, names, sizes, links and README rows:
+Check frontmatter, names, sizes, links and README entries:
 
 ```bash
 bash scripts/check.sh
@@ -111,11 +111,11 @@ Before completion, confirm discovery succeeds, test the relevant installation mo
 
 ## README Maintenance
 
-Whenever a skill is created, renamed, or removed, update the `Available Skills` table in `README.md`.
+Whenever a skill is created, renamed, or removed, update `README.md`. Workflow skills are rows in the `How it works` table: what you do, what the agent does, what you get. Other skills are lines under `Other skills`, each with a one-sentence description. Write every skill name in backticks, because `scripts/check.sh` looks for it.
 
-Each row must include the skill name, a one-sentence description, and its exact GitHub installation command in the form `npx skills add OWNER/REPOSITORY --skill <skill-name>`.
+Show the install command once, in the form `npx skills add OWNER/REPOSITORY --skill NAME`, rather than repeating it for each skill.
 
-For normal skill work, change only the relevant table row. Do not reformat unrelated sections, change general installation instructions unless incorrect, or add long per-skill usage documentation to the root README. Keep detailed usage in the skill's directory when needed.
+For normal skill work, change only the relevant row or line. Do not reformat unrelated sections, change general installation instructions unless incorrect, or add long per-skill usage documentation to the root README. Keep detailed usage in the skill's directory when needed.
 
 ## Safety and Scope
 
