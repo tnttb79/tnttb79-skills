@@ -4,15 +4,15 @@
 
 | Topic | Who knows more | How to ask |
 |---|---|---|
-| Problem, users, money, appetite, business rules | the human | open question, no suggestion |
+| Problem, users, money, appetite, business rules | the human | your guess, marked as a guess, with what it rests on |
 | Hosting, framework, database, auth | you | suggested answer, reason, cost, lettered options |
 | Competitors, regulations, limits, prices | neither | research, then report with sources |
 
-Why: offered options steer answers. In a Pew test 58% picked an answer from a list while 35% gave it unprompted, and 43% of open answers were not on the list at all. Agree-or-disagree prompts draw agreement, and an opinionated AI assistant shifts what people write and believe. After an open answer you may confirm with options built from the human's own words.
+Every question carries a suggested answer, worded so a yes accepts it. That keeps the interview fast, but offered answers pull people toward them. On the human's own ground, say your suggestion is a guess and what it rests on, and leave room for an answer that is not on your list.
 
 ## Questions by stage
 
-Story, one question per message, following up on each answer:
+Story, one question per message, each with your guess, following up on each answer:
 
 1. Tell me about the last time you, or someone you watched, hit this problem. What happened, step by step?
 2. What did they do about it, and what do they use today?
@@ -21,7 +21,14 @@ Story, one question per message, following up on each answer:
 5. What have they tried, and why did they stop or stay?
 6. Has anyone offered to pay, test an early version or introduce you to others?
 
-Scope and rules, in batches of 3 to 5:
+For example:
+
+```text
+Tell me about the last time a walker lost track of a booking.
+My guess, from what you said: a double booking, because requests come by text and by app. Yes, or what happened?
+```
+
+Scope and rules, in batches of 3 to 5, each with a suggested answer:
 
 7. Who pays, and who uses it?
 8. How much of your time will you spend before the first version is in someone's hands?
@@ -47,8 +54,8 @@ Premortem and playback:
 ## Leading questions to avoid
 
 - "Would you use an app that reminds clients to pay?" A future yes. People answer as their ideal selves, and to be nice.
-- "Your users are busy freelancers, right?" Agree-or-disagree draws agreement.
-- "What matters most: A speed, B price, C ease of use? Suggested: C." The listed options win, and the real answer may be missing.
+- "Your users are busy freelancers, right?" with nothing behind it. A guess must say what it rests on, so the human can see when it is thin.
+- "What matters most: A speed, B price, C ease of use? Suggested: C." with no way out. Always leave room for an answer not on the list.
 - "How often does this problem happen?" People summarise their own behaviour badly. Ask for the last time.
 - "Tool X has no offline mode. Is that the gap you fill?" A solution frame before the story.
 

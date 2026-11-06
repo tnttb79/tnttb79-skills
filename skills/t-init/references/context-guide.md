@@ -9,6 +9,7 @@
 | AGENTS.md | every agent, every session | commands, stack, workflow, rules, writing rules, index |
 | agent-context/ | agents, on demand | technical detail: parts, decisions, conventions, gotchas |
 | specs/ | both | one folder per feature: spec.md and tasks.md |
+| specs/backlog.md | both, only when asked | ideas and todos not started, one line each |
 
 Each fact lives in one file. Other files point to it.
 

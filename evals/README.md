@@ -18,3 +18,4 @@ Run each scenario with every agent you support, and once without the skill to se
 | [t-build.md](t-build.md) | t-build |
 | [t-design.md](t-design.md) | t-design |
 | [t-review.md](t-review.md) | t-review |
+| [t-grill.md](t-grill.md) | t-grill |

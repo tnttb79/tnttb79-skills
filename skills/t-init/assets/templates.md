@@ -29,12 +29,14 @@ Type a command in your agent chat (for example /t-spec in Claude Code, $t-spec i
 3. Run t-build and look at each change before the next task.
 4. When the agent says BLOCKED, pick one of its options.
 5. Small fix? Just ask. No spec needed.
-6. Run t-init again after big changes or every few features.
+6. Idea or todo for later? Say "add to the backlog: ...". Ask "what's in the backlog?" to see it, or "start <item>" to work on one.
+7. Run t-init again after big changes or every few features.
 
 ## Where things are
 
 - human-context/: what the app does and how it fits together. Read this first.
 - specs/: one folder per feature with spec.md and tasks.md. Finished ones move to specs/archive/.
+- specs/backlog.md: your list of ideas and todos not started yet. Agents add to it when you ask.
 - agent-context/: detailed notes for agents. You rarely need it.
 - AGENTS.md: the rules every agent reads.
 ```
@@ -67,6 +69,7 @@ Look up docs only when an API is new to this repo, a check fails on an API call,
 - Features go through t-spec (spec and tasks), then t-build (one task per run). Small fixes skip both.
 - When a request needs several steps, suggest t-spec and wait for a yes.
 - Active work is any folder in specs/ outside archive/. After a new session or compaction, read its tasks.md and git log before acting.
+- Backlog: when the human asks to note an idea or todo for later, add one line to specs/backlog.md and do not act on it. Read the file only when the human mentions the backlog or an item in it. When an item is started, as a spec or a small fix, remove its line.
 - Do not weaken, skip or delete a test, or edit a task's text or Done when command, without the human's OK.
 - Commits: <only the human commits | the agent commits after each finished task>.
 
@@ -90,6 +93,7 @@ Open the index for your task, then only the file you need. Keep each index.md un
 - agent-context/development/index.md: setup, conventions, checking work
 - agent-context/domains/index.md: tricky areas and their gotchas
 - specs/: features in progress; specs/archive/: finished ones
+- specs/backlog.md: ideas and todos not started. Read only when the human mentions it.
 - human-context/: plain-language overview for humans
 ```
 
@@ -216,6 +220,24 @@ Only what differs from the stack's defaults or is easy to get wrong.
 
 ## Manual checks
 - <what the commands do not cover, and how to check it by hand>
+```
+
+## specs/backlog.md
+
+```markdown
+# Backlog
+
+Ideas and todos not started yet, one line each.
+
+## Next
+
+## Later
+```
+
+Item format, one line each, under Next or Later (Later when the human does not say):
+
+```text
+- YYYY-MM-DD <what, in the human's words>. <optional: why, or a link to a file or issue>
 ```
 
 ## agent-context/domains/index.md

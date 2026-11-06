@@ -17,7 +17,7 @@ AGENTS.md         agent map: commands, stack, workflow, rules, writing rules, in
 CLAUDE.md         one line: @AGENTS.md
 human-context/    overview.md, architecture.md: plain words for people
 agent-context/    architecture/, development/, domains/: index.md plus 001-name.md files
-specs/            one folder per feature, archive/ for finished ones
+specs/            one folder per feature, archive/ for finished ones, backlog.md for ideas and todos not started
 ```
 
 ## Rules
@@ -69,7 +69,7 @@ Fill the templates with facts. Leave out any section you have nothing true to pu
 - AGENTS.md: list only commands found in config or docs. Run the check command once and report the result. If there is no single check command, propose one and add it only after a yes.
 - CLAUDE.md: the line @AGENTS.md, not inside code formatting. If CLAUDE.md has other content, move the shared parts into AGENTS.md and keep Claude-only parts below the import.
 - DESIGN.md: fold its facts into human-context and agent-context, then move it to specs/archive/000-design.md.
-- Create specs/archive/.
+- Create specs/archive/, and specs/backlog.md from its template with no items.
 
 ## 6. Stack docs
 
@@ -105,6 +105,7 @@ Never commit unless the human asks.
 3. Flag files over the size limits and propose a split.
 4. Read git log since the context last changed. Flag stale facts and missing gotchas, propose fixes, and apply them after a yes.
 5. Move specs with Status: done to specs/archive/.
+6. If specs/backlog.md is missing, offer to add it with its AGENTS.md and 0-START-HERE.md lines. If it exists, list items that a finished spec already covers and remove them after a yes.
 
 Change nothing the human wrote without a yes.
 

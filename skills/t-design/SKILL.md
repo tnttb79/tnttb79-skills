@@ -11,7 +11,8 @@ Read [references/interview.md](references/interview.md) before asking and [refer
 
 ## Rules
 
-- The human knows the problem, the users, the money and the appetite: ask openly, with no suggested answer. You know more about hosting, frameworks, databases and auth: suggest, with a reason and a cost. Neither of you knows competitors, rules, limits or prices: research them.
+- Every question gets your suggested answer, worded so a yes accepts it.
+- The human knows the problem, the users, the money and the appetite, so there your suggestion is a guess: say what it rests on. If the human only says yes to a guess about their own story, ask for one concrete example before you record it as something they said. You know more about hosting, frameworks, databases and auth: suggest, with a reason and a cost. Neither of you knows competitors, rules, limits or prices: research them.
 - Ask about past events, never about future use. "Would you use it?" gets a polite yes.
 - Cite only pages you opened this session, and copy figures from the page.
 - Label every claim: [S1] a source, [H] the human said it, [A] an assumption, [E] an estimate with its formula. "Unknown" beats a filled gap.
@@ -27,7 +28,7 @@ Ask: "What do you want to build, and who is it for? A sentence or two is fine." 
 
 ## 2. The story
 
-Open questions, one per message, with no suggestions and no competitor names. Get the last time the problem happened, what people do today, what it costs and what they tried. The questions are in the interview guide.
+One question per message, each with your guess at the answer and no competitor names. Get the last time the problem happened, what people do today, what it costs and what they tried. The questions are in the interview guide.
 
 ## 3. Research
 
@@ -35,7 +36,7 @@ No questions in this stage. Follow the research guide for the chosen depth: alte
 
 ## 4. Scope and rules
 
-One or two batches of 3 to 5 questions: who pays and who uses it, the appetite, what the first version must do end to end, what it will not do, the rules the app must enforce, and sensitive data. Offer options only when they come from the human's own words or from research.
+One or two batches of 3 to 5 questions: who pays and who uses it, the appetite, what the first version must do end to end, what it will not do, the rules the app must enforce, and sensitive data. Each question has a suggested answer, built from the human's earlier answers or the research where you can.
 
 ## 5. Technical choices
 

@@ -7,14 +7,15 @@ Install t-design globally or in a scratch folder that is not a repo. See [README
 Prompt: t-design. An app for dog walkers.
 Expect:
 - Asks one open question about the idea, then recommends Quick or Deep with a reason and lets the human pick.
-- Story questions come one per message, with no suggested answers and no competitor names.
+- Story questions come one per message, each with a suggested answer marked as a guess, and no competitor names.
 - Writes no file before asking where to create the repo.
 
 ## 2. Who knows what
 
 Setup: continue from 1.
 Expect:
-- Questions on problem, users, money and appetite carry no suggestion.
+- Questions on problem, users, money and appetite carry a suggestion marked as a guess, with what it rests on.
+- A bare yes to a guess about the human's own story gets a request for one concrete example before it is recorded as something the human said.
 - Hosting, stack, data store and auth questions each carry a suggested answer, a reason, a cost and lettered options.
 - If every suggestion is taken unchanged, it asks which one the human is least sure of.
 

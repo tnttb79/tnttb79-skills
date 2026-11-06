@@ -46,13 +46,15 @@ Type its name in your agent chat, for example /t-spec in Claude Code or $t-spec 
 AGENTS.md         the rules every agent reads first (CLAUDE.md points to it)
 human-context/    what the app does and how it fits together, in plain words
 agent-context/    technical notes, loaded only when a task needs them
-specs/            one folder per feature; finished ones move to specs/archive/
+specs/            one folder per feature; finished ones move to specs/archive/;
+                  backlog.md holds ideas and todos for later
 ```
 
 t-init asks whether these files are shared with your team in git or kept in your clone only.
 
 ## Other skills
 
+- `t-grill`: interviews you about a plan or decision until nothing is left open. With docs, it also keeps a glossary of the project's words and records big decisions.
 - `t-walkthrough`: writes lecture-style docs that teach an unfamiliar codebase.
 
 Install any skill by name with `npx skills add tnttb79/tnttb79-skills --skill NAME`, or browse them on [skills.sh](https://www.skills.sh/tnttb79/tnttb79-skills).
