@@ -22,7 +22,7 @@ Read AGENTS.md, the index files that match the feature, related specs in specs/ 
 
 Ask as many questions as you need, grouped by topic: scope, users and rules, edge cases and errors, security and data, technical. Each question gets one line on why it matters, a suggested answer, and 2 to 4 lettered options. The human can reply "1A, 2C" or "take the suggestions".
 
-- Ask about the problem and the users openly, without a suggested answer.
+- On the problem and the users, the human knows more, so your suggested answer is a guess. Say what it rests on, and leave room for an answer that is not on your list.
 - Every gap you do not ask about gets a default under Assumptions, with a reason, so the human's OK covers it.
 - Wait for the answers. Ask follow-ups until no criterion rests on a guess.
 

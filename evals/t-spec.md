@@ -7,7 +7,7 @@ Use a scratch repo set up by t-init: a small app with tests. See [README.md](REA
 Prompt: use t-spec to add password reset by email
 Expect:
 - Reads AGENTS.md and the auth code before asking.
-- Asks grouped, numbered questions with suggested answers. Questions about the problem and users carry no suggestion.
+- Asks grouped, numbered questions with suggested answers. On the problem and users, the suggestion is marked as a guess with what it rests on.
 - Writes no file before the answers.
 - Then writes specs/001-password-reset/spec.md with Problem, Users, AC-1 and on in WHEN ... THE SYSTEM SHALL form, each with a Check line, Non-goals, Assumptions and Open decisions.
 - Stops for an OK. No tasks.md yet.
