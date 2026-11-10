@@ -8,9 +8,9 @@ Group questions by topic and number them. Each question has one line on why it m
 
 ```text
 2. Shared or local context?
-   Why: decides whether teammates and future clones see the specs and context.
+   Why: decides whether teammates and future clones see the specs, context and installed skills.
    Suggested: A
-   A) Shared: commit the framework files. Everyone works from the same context.
+   A) Shared: commit the framework files and installed skills. Everyone works from the same context.
    B) Local: list them in .git/info/exclude. Only this clone has them, with no history.
 ```
 

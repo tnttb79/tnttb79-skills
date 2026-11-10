@@ -50,7 +50,7 @@ Ask the human to describe what they are building, in any form: a prompt, a file,
 
 Ask as many questions as you need, in the format of the discovery guide. Always settle:
 
-- Shared or local. Shared (suggested): framework files are committed, so the team and future clones share them. Local: they go in .git/info/exclude; only this clone has them, with no history.
+- Shared or local. Shared (suggested): framework files and installed skills are committed, so the team and future clones share them. Local: they go in .git/info/exclude; only this clone has them, with no history.
 - Commits: the agent commits after each finished task, or only the human commits.
 - Areas agents must not touch, and changes that need the human's approval.
 
@@ -93,7 +93,7 @@ If it fails, print the command for the human to run. Under Utilities in 0-START-
 
 ## 8. Git
 
-- Shared: framework files and skills-lock.json stay tracked. Add the installed skill folders (.agents/skills/NAME, .claude/skills/NAME and similar) to .gitignore.
+- Shared: framework files, skills-lock.json and the installed skill folders stay tracked (.agents/skills/NAME, .claude/skills/NAME and similar). Do not add them to .gitignore. If an earlier run ignored those folders, remove those lines so the skills travel with the repo.
 - Local: add the framework files, skills-lock.json and the installed skill folders to .git/info/exclude. Leave .gitignore alone.
 
 Never commit unless the human asks.
@@ -106,6 +106,7 @@ Never commit unless the human asks.
 4. Read git log since the context last changed. Flag stale facts and missing gotchas, propose fixes, and apply them after a yes.
 5. Move specs with Status: done to specs/archive/.
 6. If specs/backlog.md is missing, offer to add it with its AGENTS.md and 0-START-HERE.md lines. If it exists, list items that a finished spec already covers and remove them after a yes.
+7. If the framework files are tracked, the project is shared: installed skill folders stay tracked. If .gitignore lists them, remove those lines after a yes. If the framework files are in .git/info/exclude, leave that list as it is.
 
 Change nothing the human wrote without a yes.
 

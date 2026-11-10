@@ -56,3 +56,10 @@ Expect:
 - Starts no work on the item.
 - In another fresh session, a task that does not mention the backlog never opens specs/backlog.md.
 - "Start the CSV export item" reads the backlog, suggests t-spec, and removes the line once the spec exists.
+
+## 7. Shared mode
+
+Setup: as in 1. Answer shared to the shared or local question.
+Expect:
+- .gitignore does not list the framework files, skills-lock.json or the installed skill folders.
+- git status shows those paths, so they can be committed with the project.
