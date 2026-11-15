@@ -9,8 +9,9 @@ disable-model-invocation: true
 ## Goal
 
 Help the user build a strong mental model of an unfamiliar codebase by generating a
-complete, evidence-based set of lecture-style Markdown files in a `lectures/` directory.
-Derive the topic breakdown by analyzing the current state of the code itself.
+complete, evidence-based set of lecture-style Markdown files in a `lectures/` directory:
+`context/lectures/` when the repo has a `context/` folder (set up by t-init), otherwise
+`lectures/` at the root. Every path below means that directory. Derive the topic breakdown by analyzing the current state of the code itself.
 
 Every lecture must teach both **how** the implementation works and **why** it was designed
 that way. Do not merely summarize files or restate code. Read

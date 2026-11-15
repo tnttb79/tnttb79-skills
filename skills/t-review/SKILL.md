@@ -1,6 +1,6 @@
 ---
 name: t-review
-description: Review one feature, a diff or a whole app in any stack, and write the result as a spec in specs/NNN-review-scope/ that t-build can implement. Runs the project's own checks and scanners first, keeps only findings proven with a file and line, splits Fix first items, which become tasks, from Minor ones the human picks, and says what it did not check. Use when the human asks for t-review, a code review, an audit or a quality check.
+description: Review one feature, a diff or a whole app in any stack, and write the result as a spec in context/specs/NNN-review-scope/ that t-build can implement. Runs the project's own checks and scanners first, keeps only findings proven with a file and line, splits Fix first items, which become tasks, from Minor ones the human picks, and says what it did not check. Use when the human asks for t-review, a code review, an audit or a quality check.
 ---
 
 # t-review
@@ -11,7 +11,7 @@ Checklist: [references/checklist.md](references/checklist.md). Templates: [asset
 
 ## 1. Scope
 
-Use the scope the human gave, or ask: a feature (a spec folder), a diff or commit range, or the whole app. Suggested: the most recent spec.
+Use the scope the human gave, or ask: a feature (a folder in context/specs/), a diff or commit range, or the whole app. Suggested: the most recent spec.
 
 - Feature or diff: review the changed lines and what they touch. Problems in unchanged code go to Outside scope unless they block the spec.
 - Whole app: start at the entry points and the code that writes data. Fix first holds only correctness, security and data loss.
@@ -52,10 +52,10 @@ There is no cap on Fix first; the entry rule keeps it short. More than about sev
 
 ## 6. Write the spec
 
-Folder: specs/NNN-review-SCOPE/, numbered after the highest in specs/ and specs/archive/. Fill the templates:
+Folder: context/specs/NNN-review-SCOPE/, numbered after the highest in context/specs/ and context/specs/archive/. Fill the templates:
 
 - spec.md: summary, checks run, findings F1 and on in the finding format, then Minor, Questions, Not checked and Outside scope.
-- tasks.md: one task per Fix first finding, citing its F ID, with a Done when command, then a last task that re-runs the checks. If proving a fix needs a new test, the task says so.
+- tasks.md: one task per Fix first finding, citing its F ID, with a Done when command, then a last task that re-runs the checks. If proving a fix needs a new test, the task says so. With context/agent/development/agentic-testing.md, each fix gets a proof written as it says, which fails before the fix.
 
 ## 7. Show and hand over
 

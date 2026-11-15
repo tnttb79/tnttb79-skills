@@ -2,7 +2,7 @@
 
 Placeholders are in angle brackets. Replace each with facts, or delete the line or section. Keep the headings in this order.
 
-## 0-START-HERE.md
+## context/START-HERE.md
 
 ```markdown
 # Start here
@@ -14,7 +14,7 @@ Placeholders are in angle brackets. Replace each with facts, or delete the line 
 Type a command in your agent chat (for example /t-spec in Claude Code, $t-spec in Codex) or ask in plain words: "use t-spec to add password reset".
 
 - t-spec: describe a feature. The agent asks questions, then writes a spec and a task list for you to approve.
-- t-build: build the approved tasks, one per run. Say "continue" for the next one.
+- t-build: build the approved spec from start to end. The agent proves each task, gets a fresh review, cleans up and reports.
 - t-review: review a feature or the whole app. Fixes come back as a spec that t-build can build.
 - t-init: tidy the project context. Run it after big changes or every few features.
 
@@ -26,19 +26,20 @@ Type a command in your agent chat (for example /t-spec in Claude Code, $t-spec i
 
 1. Describe each feature with t-spec and answer its questions.
 2. Approve the spec, then the task list.
-3. Run t-build and look at each change before the next task.
+3. Run t-build. It works to the end and reports what it built, what it proved and what it could not check.
 4. When the agent says BLOCKED, pick one of its options.
 5. Small fix? Just ask. No spec needed.
 6. Idea or todo for later? Say "add to the backlog: ...". Ask "what's in the backlog?" to see it, or "start <item>" to work on one.
-7. Run t-init again after big changes or every few features.
+7. Several approved specs that do not overlap? The agent may offer to build them in parallel. You can also ask for it.
+8. Run t-init again after big changes or every few features, or to set up agentic testing.
 
 ## Where things are
 
-- human-context/: what the app does and how it fits together. Read this first.
-- specs/: one folder per feature with spec.md and tasks.md. Finished ones move to specs/archive/.
-- specs/backlog.md: your list of ideas and todos not started yet. Agents add to it when you ask.
-- agent-context/: detailed notes for agents. You rarely need it.
-- AGENTS.md: the rules every agent reads.
+- context/human/: what the app does and how it fits together. Read this first.
+- context/specs/: one folder per feature with spec.md and tasks.md. Finished ones move to context/specs/archive/.
+- context/specs/backlog.md: your list of ideas and todos not started yet. Agents add to it when you ask.
+- context/agent/: detailed notes for agents. You rarely need it.
+- AGENTS.md (repo root): the rules every agent reads.
 ```
 
 ## AGENTS.md
@@ -46,7 +47,7 @@ Type a command in your agent chat (for example /t-spec in Claude Code, $t-spec i
 ```markdown
 # <App name>
 
-<One sentence: what the app is.> Humans start at 0-START-HERE.md.
+<One sentence: what the app is.> Humans start at context/START-HERE.md.
 
 ## Commands
 
@@ -66,10 +67,12 @@ Look up docs only when an API is new to this repo, a check fails on an API call,
 
 ## Workflow
 
-- Features go through t-spec (spec and tasks), then t-build (one task per run). Small fixes skip both.
+- Features go through t-spec (spec and tasks), then t-build (the whole spec, end to end). Small fixes skip both.
 - When a request needs several steps, suggest t-spec and wait for a yes.
-- Active work is any folder in specs/ outside archive/. After a new session or compaction, read its tasks.md and git log before acting.
-- Backlog: when the human asks to note an idea or todo for later, add one line to specs/backlog.md and do not act on it. Read the file only when the human mentions the backlog or an item in it. When an item is started, as a spec or a small fix, remove its line.
+- Active work is any folder in context/specs/ outside archive/. After a new session or compaction, read its tasks.md and git log before acting.
+- Agentic testing is on when context/agent/development/agentic-testing.md exists: prove each criterion as it says.
+- Temporary files go in agent-tmp/ inside the git directory (`git rev-parse --git-dir`), never in the working tree. Stop what you start and delete what you made when done.
+- Backlog: when the human asks to note an idea or todo for later, add one line to context/specs/backlog.md and do not act on it. Read the file only when the human mentions the backlog or an item in it. When an item is started, as a spec or a small fix, remove its line.
 - Do not weaken, skip or delete a test, or edit a task's text or Done when command, without the human's OK.
 - Commits: <only the human commits | the agent commits after each finished task>.
 
@@ -82,6 +85,7 @@ Look up docs only when an API is new to this repo, a check fails on an API call,
 - No em dashes. No emojis.
 - No filler words: leverage, utilise, robust, seamless, comprehensive, streamline, delve, facilitate, in essence, it is important to note that, it is worth mentioning that.
 - Plain, short sentences. Say what changed and why. Do not narrate what you are about to do.
+- Context holds current facts. When a decision changes, replace the old line; do not record how it changed.
 - No AI attribution, co-author or generated-with lines.
 - Code comments only at crucial places: short, and they explain why.
 
@@ -89,12 +93,12 @@ Look up docs only when an API is new to this repo, a check fails on an API call,
 
 Open the index for your task, then only the file you need. Keep each index.md under 20 lines and other context files under 200; split them when bigger.
 
-- agent-context/architecture/index.md: system map, main parts, data
-- agent-context/development/index.md: setup, conventions, checking work
-- agent-context/domains/index.md: tricky areas and their gotchas
-- specs/: features in progress; specs/archive/: finished ones
-- specs/backlog.md: ideas and todos not started. Read only when the human mentions it.
-- human-context/: plain-language overview for humans
+- context/agent/architecture/index.md: system map, main parts, data
+- context/agent/development/index.md: setup, conventions, agentic testing
+- context/agent/domains/index.md: tricky areas and their gotchas
+- context/specs/: features in progress; context/specs/archive/: finished ones
+- context/specs/backlog.md: ideas and todos not started. Read only when the human mentions it.
+- context/human/: plain-language overview for humans
 ```
 
 ## CLAUDE.md
@@ -103,7 +107,7 @@ Open the index for your task, then only the file you need. Keep each index.md un
 @AGENTS.md
 ```
 
-## human-context/overview.md
+## context/human/overview.md
 
 ```markdown
 # <App name>
@@ -124,7 +128,7 @@ Open the index for your task, then only the file you need. Keep each index.md un
 - <what the app deliberately does not do>
 ```
 
-## human-context/architecture.md
+## context/human/architecture.md
 
 ```markdown
 # How <App name> fits together
@@ -143,7 +147,7 @@ Open the index for your task, then only the file you need. Keep each index.md un
 - <service>: <what it is used for>
 ```
 
-## agent-context/architecture/index.md
+## context/agent/architecture/index.md
 
 ```markdown
 # Architecture
@@ -157,7 +161,7 @@ Open the index for your task, then only the file you need. Keep each index.md un
 - 001-<name>.md: <what it covers; read it before touching what>
 ```
 
-## agent-context/architecture/NNN-name.md
+## context/agent/architecture/NNN-name.md
 
 ```markdown
 # <Part or flow>
@@ -174,17 +178,17 @@ Where: <paths>
 - <what surprises people>: <what to do>
 ```
 
-## agent-context/development/index.md
+## context/agent/development/index.md
 
 ```markdown
 # Development
 
 - 001-setup.md: install, environment variable names, running locally
 - 002-conventions.md: how code is laid out and written here
-- 003-checking-work.md: commands and manual checks that prove a change works
+- agentic-testing.md: how to run and drive the app to prove a change works. Only when agentic testing is set up.
 ```
 
-## agent-context/development/001-setup.md
+## context/agent/development/001-setup.md
 
 ```markdown
 # Setup
@@ -199,7 +203,7 @@ Where: <paths>
 <commands, ports, seed data>
 ```
 
-## agent-context/development/002-conventions.md
+## context/agent/development/002-conventions.md
 
 ```markdown
 # Conventions
@@ -209,20 +213,45 @@ Only what differs from the stack's defaults or is easy to get wrong.
 - <convention>: <example path>
 ```
 
-## agent-context/development/003-checking-work.md
+## context/agent/development/agentic-testing.md
+
+Only when the human sets up agentic testing. Fill it from the human's instructions and the repo. Under 80 lines.
 
 ```markdown
-# Checking work
+# Agentic testing
 
-| Check | Command | Covers |
-|---|---|---|
-| All | `<check command>` | <what it runs> |
+Every acceptance criterion gets one short proof that drives the running app from the outside. It fails before the work and passes after.
 
-## Manual checks
-- <what the commands do not cover, and how to check it by hand>
+## Proof
+
+- Tool: <test runner or driver, and its version>
+- Where proofs live: <path and file naming>
+- Run one proof: `<command with a file or name filter>`
+- Style: one test per criterion, named after it, through <the page, the API, the command line or the screen>. Fakes only for outside services.
+
+## Run the app for a test
+
+- Start: `<command>`, ready when <signal or URL>
+- Test data: <seed command, made-up records>
+- Test login: <how to sign in as a test user, no secrets>
+- Fakes: <outside service>: <fake or test mode>
+
+## Output
+
+- <tool>: writes to <path in the git directory's agent-tmp/, or what to delete after>
+
+## Look at the app
+
+- <browser or screen tool agents may use to find elements and check the screen>. A look never replaces a proof.
+
+## Parallel
+
+- Copy into a new worktree: <untracked files, by name>
+- Install: `<command>`
+- Own port and database: <how>
 ```
 
-## specs/backlog.md
+## context/specs/backlog.md
 
 ```markdown
 # Backlog
@@ -240,7 +269,7 @@ Item format, one line each, under Next or Later (Later when the human does not s
 - YYYY-MM-DD <what, in the human's words>. <optional: why, or a link to a file or issue>
 ```
 
-## agent-context/domains/index.md
+## context/agent/domains/index.md
 
 ```markdown
 # Domains
@@ -250,7 +279,7 @@ One file per tricky area. Read the one your task touches.
 - 001-<area>.md: <one line>
 ```
 
-## agent-context/domains/NNN-area.md
+## context/agent/domains/NNN-area.md
 
 ```markdown
 # <Area>

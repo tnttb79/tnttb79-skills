@@ -6,9 +6,9 @@ The same interview, plus three jobs: pin down words, record big decisions, check
 
 Find the project's context layout first.
 
-- Set up by t-init (AGENTS.md with an Index, and agent-context/):
-  - Glossary: agent-context/domains/NNN-glossary.md, with the next free number, plus one line in agent-context/domains/index.md. If a glossary file exists, use it.
-  - Decisions: the Decisions section of the agent-context file for the part or area they belong to. If no file fits, ask.
+- Set up by t-init (AGENTS.md with an Index, and context/agent/):
+  - Glossary: context/agent/domains/NNN-glossary.md, with the next free number, plus one line in context/agent/domains/index.md. If a glossary file exists, use it.
+  - Decisions: the Decisions section of the context/agent file for the part or area they belong to. Write the decision as it stands now; when it changes, replace it. If no file fits, ask.
 - Any other project: ask once where to put them. Suggest GLOSSARY.md at the root and one short file per decision in docs/adr/, numbered 0001-slug.md.
 
 Create a file only when there is something to write. Keep the glossary within the project's size limits, and split it by area when it grows.

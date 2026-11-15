@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# task-done start <tasks.md> <id>  run the proof before coding and log the result
+# task-done <tasks.md> <id>        run the proof, tick the task on exit 0 and log it
+#
+# With context/agent/development/agentic-testing.md in the repo, a tick needs an
+# earlier start line for the same command: red for a normal task, green for a
+# task tagged refactor, whose proof must pass before and after.
+
+mode=done
+if [ "${1:-}" = "start" ]; then
+  mode=start
+  shift
+fi
+
 if [ "$#" -ne 2 ]; then
-  echo "usage: task-done <path/to/tasks.md> <task-id>" >&2
+  echo "usage: task-done [start] <path/to/tasks.md> <task-id>" >&2
   exit 2
 fi
 
@@ -33,23 +46,70 @@ if [ -z "$cmd" ]; then
   exit 2
 fi
 
-root="$(git -C "$(dirname "$tasks")" rev-parse --show-toplevel 2>/dev/null || dirname "$tasks")"
-cd "$root"
+refactor=no
+if printf '%s\n' "$line" | grep -Eq "^- \[ \] ${id} \([^)]*refactor[^)]*\)"; then
+  refactor=yes
+fi
 
+root="$(git -C "$(dirname "$tasks")" rev-parse --show-toplevel 2>/dev/null || dirname "$tasks")"
+testing=no
+if [ -f "$root/context/agent/development/agentic-testing.md" ]; then
+  testing=yes
+fi
+
+log() {
+  if ! grep -q '^## Log' "$tasks"; then
+    printf '\n## Log\n' >> "$tasks"
+  fi
+  if [ -n "$(tail -c 1 "$tasks")" ]; then
+    printf '\n' >> "$tasks"
+  fi
+  printf -- '- %s %s %s\n' "$(date +%Y-%m-%d)" "$id" "$1" >> "$tasks"
+}
+
+commit="$(git -C "$root" rev-parse --short HEAD 2>/dev/null || echo no-commit)"
+if [ -n "$(git -C "$root" status --porcelain 2>/dev/null)" ]; then
+  commit="$commit+dirty"
+fi
+
+if [ "$mode" = "done" ] && [ "$testing" = "yes" ]; then
+  want="red"
+  [ "$refactor" = "yes" ] && want="green"
+  if ! grep -F -- " $id $want before: $cmd" "$tasks" > /dev/null; then
+    echo "task-done: no '$want before' line for $id with this command. Run: task-done start $1 $id" >&2
+    exit 2
+  fi
+fi
+
+cd "$root"
 echo "task-done: $id: running $cmd"
 set +e
 bash -c "$cmd" < /dev/null
 code=$?
 set -e
 
+if [ "$mode" = "start" ]; then
+  if [ "$refactor" = "yes" ]; then
+    if [ "$code" -ne 0 ]; then
+      echo "task-done: $id is a refactor, so its proof must pass before the change; it exited $code" >&2
+      exit 1
+    fi
+    log "green before: $cmd"
+    echo "task-done: $id passes before the refactor, as it should"
+  else
+    if [ "$code" -eq 0 ]; then
+      echo "task-done: $id passes before any work, so it proves nothing yet. Make the proof test the new behaviour." >&2
+      exit 1
+    fi
+    log "red before: $cmd"
+    echo "task-done: $id fails before the work, as it should"
+  fi
+  exit 0
+fi
+
 if [ "$code" -ne 0 ]; then
   echo "task-done: $id not done, command exited $code" >&2
   exit "$code"
-fi
-
-commit="$(git rev-parse --short HEAD 2>/dev/null || echo no-commit)"
-if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
-  commit="$commit+dirty"
 fi
 
 tmp="$(mktemp)"
@@ -60,12 +120,5 @@ awk -v id="$id" '
 cat "$tmp" > "$tasks"
 rm -f "$tmp"
 
-if ! grep -q '^## Log' "$tasks"; then
-  printf '\n## Log\n' >> "$tasks"
-fi
-if [ -n "$(tail -c 1 "$tasks")" ]; then
-  printf '\n' >> "$tasks"
-fi
-printf -- '- %s %s %s pass: %s\n' "$(date +%Y-%m-%d)" "$id" "$commit" "$cmd" >> "$tasks"
-
+log "$commit pass: $cmd"
 echo "task-done: ticked $id"

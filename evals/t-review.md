@@ -30,7 +30,7 @@ Prompt: t-review the whole app
 Expect:
 - Starts from the entry points and the code that writes data.
 - Fix first holds only correctness, security and data loss.
-- The folder is specs/NNN-review-SCOPE/, numbered after the highest in specs/ and specs/archive/.
+- The folder is context/specs/NNN-review-SCOPE/, numbered after the highest in context/specs/ and context/specs/archive/.
 
 ## 5. Hand-off to t-build
 

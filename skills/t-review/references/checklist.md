@@ -75,7 +75,7 @@ Tools: coverage to find untested criteria, not as a score; a mutation tool on ch
 - Does the code use APIs that the version in the lockfile deprecates or has removed?
 - Does it follow the framework's documented way for this job, such as data fetching, routing, state, config or errors?
 - Does it rebuild something the framework or standard library already provides?
-- Does it match how the rest of this codebase does the same thing (agent-context/development/002-conventions.md)?
+- Does it match how the rest of this codebase does the same thing (context/agent/development/002-conventions.md)?
 
 Every D8 finding cites the doc page for that version or the lint rule. Tools: the stack's own linter and framework checks. Not from code: whether upgrading to a newer major version is worth it.
 

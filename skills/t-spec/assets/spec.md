@@ -18,6 +18,10 @@ Ticket: <optional link to a tracker; delete the line if none>
 - AC-2: WHEN <trigger> THE SYSTEM SHALL <observable result>.
   Check: <test name, command, or manual step>
 
+## Approvals
+
+- <what the human said yes to for this feature, such as a new library or a schema change; or none>
+
 ## Non-goals
 
 - <what this feature will not do>

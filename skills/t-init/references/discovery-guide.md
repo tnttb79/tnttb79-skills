@@ -38,6 +38,7 @@ Skip anything already clear.
 - Stack (new repos): suggest well-known options, each with a reason.
 - Shared or local, commits, protected areas, approvals.
 - The check command, if none exists.
+- Agentic testing: yes or not now. On yes, how the human wants agents to test, with your suggested tool for the stack.
 - Tricky areas the human already knows about.
 
 ## When to stop

@@ -1,6 +1,6 @@
 # t-grill evals
 
-Use a scratch repo set up by t-init: a small app with tests and agent-context/domains/. See [README.md](README.md) for how to run.
+Use a scratch repo set up by t-init: a small app with tests and context/agent/domains/. See [README.md](README.md) for how to run.
 
 ## 1. Default mode
 
@@ -18,7 +18,7 @@ Expect:
 Prompt: grill me with docs on letting customers edit an order after checkout
 Expect:
 - Does not ask about saving; docs mode is on.
-- When a word is vague, asks for one precise word, then writes agent-context/domains/NNN-glossary.md with the next free number and adds a line to agent-context/domains/index.md.
+- When a word is vague, asks for one precise word, then writes context/agent/domains/NNN-glossary.md with the next free number and adds a line to context/agent/domains/index.md.
 - Records only decisions that are hard to undo, surprising and a real trade-off, in a Decisions section, and says so in one line.
 - Points to a file and line when the human's claim disagrees with the code. Changes no code.
 - Lists changed files at the end. Does not commit.

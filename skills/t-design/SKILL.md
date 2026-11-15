@@ -66,4 +66,4 @@ Ask: "Imagine it is a year after launch and the app has failed. What is the most
 
 ## Hand off
 
-Tell the human to open the new repo, install t-init there if needed (npx skills add tnttb79/tnttb79-skills --skill t-init) and run it. t-init folds DESIGN.md into the project context and archives it as specs/archive/000-design.md. After a Deep run, point to the user interview script in A6.
+Tell the human to open the new repo, install t-init there if needed (npx skills add tnttb79/tnttb79-skills --skill t-init) and run it. t-init folds DESIGN.md into the project context and archives it as context/specs/archive/000-design.md. After a Deep run, point to the user interview script in A6.
